@@ -1,0 +1,19 @@
+.order-by {
+  border: none;
+  padding: 10px 15px;
+  font-size: var(--font-size-s);
+  background: transparent;
+
+
+
+  color: #ffffff;
+
+  font-family: "MonumentExtended";
+  text-transform: uppercase;
+  font-weight: 900;
+
+  @media (min-width: 1024px) {
+    margin-top: 60px;
+    z-index: 999;
+  }
+}

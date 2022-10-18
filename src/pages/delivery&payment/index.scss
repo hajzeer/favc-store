@@ -1,0 +1,25 @@
+.complaint {
+  padding-top: 150px;
+  min-height: 100vh;
+  ol {
+    margin: 20px;
+    @media (min-width: 1024px) {
+      padding-top: 10%;
+      padding-left: 40%;
+    }
+    li {
+      font-family: Elevon, sans-serif;
+      font-size: 20px;
+
+      p {
+        font-family: montserrat, sans-serif;
+        font-size: 15px;
+      }
+
+
+      span {
+        font-weight: 800;
+      }
+    }
+  }
+}

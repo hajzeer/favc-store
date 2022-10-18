@@ -1,0 +1,24 @@
+.variant-selector__button {
+  align-items: center;
+  border: 2px solid #dfdfdf;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 10px 0;
+  margin: 5px;
+  width: 50px;
+  height: 50px;
+  position: relative;
+  text-transform: uppercase;
+
+  font-family: "Monstserrat", sans-serif;
+  font-size: var(--font-size-s);
+  font-weight: 900;
+
+  transition: all .3s ease-out;
+}
+
+.variant-selector__button.variant-selector__button--is-selected {
+  border: 2px solid var(--color-text-sub);
+  background: var(--color-text-main);
+}

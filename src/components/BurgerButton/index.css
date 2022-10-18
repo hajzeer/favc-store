@@ -1,0 +1,38 @@
+button {
+  --menu-line-height: 3px;
+  --menu-line-border-radius: 2px;
+  --menu-line-vertical-distance: 9px;
+  --menu-line-horizontal-distance: 8px;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  position: fixed;
+  bottom: 15px;
+  left: 5px;
+  height: 30px;
+  z-index: var(--z-index-burger-button);
+}
+
+.lines {
+  background: transparent;
+  color: var(--color-text-main);
+  font-family: elevon, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+@media (min-width: 768px) {
+  button {
+    --menu-line-vertical-distance: 10px;
+    --menu-line-horizontal-distance: 10px;
+  }
+}
+
+
+@media (min-width: 1024px) {
+  button {
+    display: none;
+  }
+}

@@ -1,0 +1,69 @@
+.page-header {
+  --distance-to-next-element: 100px;
+  margin-bottom: var(--distance-to-next-element);
+  position: relative;
+  padding-top: 150px;
+
+  @media (min-width: 1024px) {
+    position: relative;
+    z-index: 9999;
+    margin-bottom: 30px;
+    left: 45%;
+    width: 50%;
+    top: 50px;
+  }
+
+}
+
+.page-header__title {
+
+  color: transparent;
+  width: 100%;
+  text-align: right;
+  padding-right: 20px;
+  -webkit-text-stroke: 1.5px #ffffff;
+  text-shadow: none;
+  font-family: "MonumentExtended";
+  font-weight: 900;
+  font-size: 25px;
+  text-transform: uppercase;
+  z-index: 99;
+
+  @media (min-width: 1024px) {
+    font-size: 40px;
+    -webkit-text-stroke: 2px #ffffff;
+
+  }
+
+}
+
+.sign {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  right: -5px;
+  top: 130px;
+  z-index: -1;
+
+  @media (min-width: 1024px) {
+    width: 125px;
+    height: 125px;
+    right: -30px;
+    top: 105px;
+  }
+}
+
+.page-header__description {
+  color: var(--color-text-main);
+  font-family: montserrat, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 36px;
+  margin-top: 10px;
+  max-width: var(--font-max-width);
+}
+
+/* Overwrite styles for p from global.scss */
+.page-header__description >>> p {
+  margin-bottom: 1em;
+}

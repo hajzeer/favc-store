@@ -1,0 +1,23 @@
+.product-page__buy {
+  width: 309px;
+  flex: 1 1 auto;
+  font-size: var(--font-size-m);
+  text-transform: uppercase;
+  color: var(--color-text-main);
+  text-decoration: none;
+  text-align: center;
+  padding: 10px 25px;
+  position: relative;
+  border: 2px solid var(--color-text-main);
+
+  font-family: montserrat, sans-serif;
+  font-weight: 500;
+  letter-spacing: .5px;
+
+}
+
+@media screen and (min-width: 1024px) {
+  .product-page__buy {
+    flex-grow: 0;
+  }
+}

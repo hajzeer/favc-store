@@ -1,0 +1,144 @@
+@import "../../cardsSlider/styles/mixins.scss";
+$ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+$cardsTotal: 10;
+$cardsPositionOffset: 55vh * 0.02;
+$cardsScaleOffset: 0.08;
+$defaultTranslation: $cardsPositionOffset * $cardsTotal;
+$defaultScale: 1 - ($cardsScaleOffset * $cardsTotal);
+
+
+.crystallize-components-images {
+  height: 60vh;
+  margin-bottom: -30px;
+
+  @media (min-width: 1024px) {
+    z-index: -1;
+  }
+
+}
+
+
+.crystallize-components-images >>> picture {
+  min-height: 300px;
+}
+
+.crystallize-components-images *:nth-child(3n) {
+  grid-column-start: span 2;
+}
+
+.crystallize-components-images >>> img {
+  height: 100%;
+  width: 100%;
+
+}
+
+/**
+ * Wrapper of the image
+ */
+.crystallize-components-images__image-wrapper {
+  @include card();
+  @include absolute(0);
+  @include sizing(100% 55vw);
+  @include flex-center();
+
+  @include after() {
+    @include sizing(21px 3px);
+    @include absolute(right 0 bottom 11px left 0);
+
+    margin: auto;
+    border-radius: 100px;
+  }
+
+  display: flex;
+  max-height: 350px;
+  margin: auto;
+
+
+  opacity: 0;
+  transform: translateY($defaultTranslation) scale($defaultScale);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  user-select: none;
+  pointer-events: none;
+  will-change: transform, opacity;
+
+  height: 100vw;
+
+  &.isCurrent {
+    pointer-events: auto;
+  }
+
+  &.isAnimating {
+    transition: transform 0.7s $ease-out-back;
+  }
+
+
+}
+
+
+
+@for $i from 1 through $cardsTotal {
+  $index: $i - 1;
+  $translation: $cardsPositionOffset * $index;
+  $scale: 1 - (.08 * $index);
+  $rotate: 6deg * $index;
+
+  .crystallize-components-images__image-wrapper:nth-child(#{$i}) {
+    z-index: $cardsTotal - $index;
+    height: 55vh;
+    opacity: 1;
+    transform: rotate($rotate) translateY($index * -3%) translateX($index * 6%) scale($scale);
+  }
+}
+
+
+
+
+.crystallize-components-images__image {
+}
+
+/**
+ * Wrapper of a portrait image
+ */
+.crystallize-components-images__image-wrapper.crystallize-components-images__image-wrapper--is-portrait {
+  width: auto;
+  height: 100%;
+  position: absolute;
+  top: 120px;
+  padding: 20px;
+
+
+}
+
+
+
+/**
+ * When the wrapper it's the only child, we force the img to fill the available space
+ */
+.crystallize-components-images__image-wrapper:only-child {
+  width: 100% !important;
+  max-width: 100%;
+}
+
+.crystallize-components-images__image-wrapper >>> figure {
+  height: 100%;
+}
+
+.crystallize-components-images__image-wrapper >>> img {
+  object-fit: cover;
+  overflow: hidden;
+  width: auto;
+  height: 60vh;
+  border: 1px solid #dfdfdf;
+}
+
+.crystallize-components-images__image-wrapper:first-child {
+  width: 100%;
+}
+
+
+@media screen and (max-width: 499px) {
+  .crystallize-components-images >>> picture {
+    min-height: 100px;
+  }
+}

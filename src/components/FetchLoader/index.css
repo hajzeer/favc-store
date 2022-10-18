@@ -1,0 +1,12 @@
+.fetch-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  padding: 50px;
+  min-height: 100vh;
+}
+
+.fetch-loader > svg {
+  margin-right: 25px;
+}

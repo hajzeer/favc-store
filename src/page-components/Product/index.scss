@@ -1,0 +1,160 @@
+.product-page {
+  --distance-to-related-content: 100px;
+  /**
+   * We use display:flex, rather than display:grid, because if we have scrollable
+   * elements inside the layout, the design gets broken.
+   *
+   * Remember that we're using the CrystallizeCatalogueSlider that includes a scroll.
+   */
+  display: flex;
+  flex-direction: column;
+
+
+ z-index: -1;
+
+}
+
+.product-page__title {
+  font-size: var(--font-size-xl);
+  color: var(--color-text-main);
+  max-width: var(--font-max-width);
+  margin-bottom: 15px;
+}
+
+.product-page__summary {
+  color: var(--color-text-sub);
+    font-family: montserrat, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 36px;
+  margin-top: 10px;
+  max-width: var(--font-max-width);
+}
+
+/* Overwrite styles for p from global.scss */
+.product-page__summary >>> p {
+  margin-bottom: 1em;
+  color: #ffffff;
+}
+
+.product__title {
+    font-family: "MonumentExtended";
+  font-weight: 800;
+  font-size: 35px;
+  letter-spacing: .8px;
+
+  @media (min-width: 1024px) {
+    position: relative;
+    top: -300px;
+  }
+}
+
+.bag {
+  position: absolute;
+  width: 400px;
+
+  transform: rotate(30deg);
+  right: -200px;
+  top: -80px;
+  z-index: -1;
+
+  @media (min-width: 1024px) {
+    right: 150px;
+    top: -250px;
+    width: 500px;
+    transform: rotate(0deg);
+    max-width: none;
+
+  }
+}
+
+.product-page__pricing-details {
+  align-items: center;
+
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 1024px) {
+    width: 100vw;
+    position: relative;
+    left: -40%;
+    top: -300px;
+    padding-bottom: 20%;
+
+
+  }
+}
+
+.product-page__specs {
+  display: block;
+  margin-top: 15px;
+  padding: 20px 0;
+
+  @media (min-width: 1024px) {
+    position: relative;
+    top: -300px;
+  }
+}
+
+.product-page__related-content {
+  margin-top: var(--distance-to-related-content);
+}
+
+@media screen and (min-width: 768px) {
+  .product-page__inner {
+    display: grid;
+    column-gap: 15px;
+    grid-template-columns: repeat(12,1fr);
+    grid-template-areas: 'content content content content content content  . header header header header header';
+
+  }
+
+  .product-page__header {
+    grid-area: header;
+
+
+  }
+
+  .product-page__header-inner {
+    position: sticky !important;
+
+    @media (min-width: 1024px) {
+      position: relative !important;
+      height: 50%;
+    }
+  }
+
+  .info__container {
+    z-index: -1;
+    height: 50%;
+  }
+
+  .product-page__organic-content{
+
+  }
+}
+.desktop {
+  @media (min-width: 1024px) {
+    width: 100vw;
+    position: relative;
+    left: -150%;
+    top: 200px;
+    padding-bottom: 0;
+
+
+    .product-page__summary {
+      width: 40%;
+      position: relative;
+      top: -300px;
+    }
+    .product-page__organic-content{
+      position: relative;
+        width: 300px;
+        left: 50%;
+        top: -150px;
+        height: 60vh;
+    }
+  }
+}
+
+
