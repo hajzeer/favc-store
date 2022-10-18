@@ -1,5 +1,6 @@
 <template>
   <div class="complaint">
+    <h1 class="page-header__title">Dostawa<br/> I płatności</h1>
     <ol>
       <li v-for="text in data" :key="text.text"><p>{{text.text}}</p></li>
     </ol>

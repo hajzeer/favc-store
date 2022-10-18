@@ -13,11 +13,18 @@ footer {
         padding-left: 70px;
         z-index: 9999;
 
+        div {
+            padding-bottom: 20px;
+        }
         .info__nav {
+            margin-bottom: 5px;
             li {
                 padding: 0 20px;
                 z-index: 9999;
             }
+        }
+        .creator__div {
+            padding-bottom: 0;
         }
     }
 }

@@ -1,5 +1,6 @@
 <template>
   <div class="complaint">
+    <h1 class="page-header__title">ZWROTY<br/> I REKLAMACJE</h1>
     <ol>
       <li v-for="(text, index) in data" :key="text.text"><p>{{text.text}}<span v-if="index === 1">KLIKAJĄC TUTAJ</span></p></li>
     </ol>
