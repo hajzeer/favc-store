@@ -62,7 +62,7 @@ export default {
    * to any page, you'll fetch a draft version from Crystallize of that resource,
    * and the peview bar will be shown as well.
    */
-  target: 'server',
+  target: 'static',
   env: {
     /**
      * IMPORTANT: In order to work with env variables, you must map them explicitly
