@@ -46,6 +46,7 @@
                 </div>
                 <div class="product-page__pricing-details">
                   <BuyButton
+                      :stock="selectedVariant.stock"
                     :isLoading="isItemBeingAddedToCart"
                     @click="handleBuyItem"
                   />
@@ -160,6 +161,7 @@ export default {
         isRelatedProductsComponent
       )?.content?.items;
     }
+    console.log(this.selectedVariant)
     },
 
   /**
