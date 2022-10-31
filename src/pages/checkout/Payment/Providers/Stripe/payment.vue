@@ -49,9 +49,7 @@ export default {
   },
   methods: {
     async handleStripeToken(token) {
-      console.log(this.checkoutModel)
       // 1. Confirm Card Payment
-
       // 2. If payment intent succeeded, do "mutation confirmStripeOrder"
       // 3. Redirect to /confirmation/{crystallizeOrderId}?emptyBasket
     },

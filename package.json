@@ -12,7 +12,7 @@
   "dependencies": {
     "@crystallize/content-transformer": "^6.1.0",
     "@videojs/vhs-utils": "^3.0.1",
-    "@vue-stripe/vue-stripe": "github:devictoribero/vue-stripe",
+    "@vue-stripe/vue-stripe": "^4.4.4",
     "bl": "^5.0.0",
     "dashjs": "3.2.2",
     "interactjs": "^1.10.17",
