@@ -63,7 +63,7 @@ export default {
    * and the peview bar will be shown as well.
    */
   target: 'server',
-  ssr: false,
+  ssr: true,
   env: {
     /**
      * IMPORTANT: In order to work with env variables, you must map them explicitly

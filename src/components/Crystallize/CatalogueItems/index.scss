@@ -6,6 +6,7 @@
   row-gap: calc(var(--column-gap) * 2);
   grid-template-columns: 1fr;
   list-style: none;
+  min-height: 50vh;
 
   @media (min-width: 1024px) {
     padding-left: 35%;
