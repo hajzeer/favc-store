@@ -62,7 +62,7 @@ export default {
    * to any page, you'll fetch a draft version from Crystallize of that resource,
    * and the peview bar will be shown as well.
    */
-  target: 'static',
+  target: 'server',
   ssr: false,
   env: {
     /**

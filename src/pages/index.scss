@@ -6,6 +6,23 @@
 
 
 }
+
+.info__paragraph {
+  z-index: 999;
+  position: absolute !important;
+  color: var(--color-text-main);
+  font-size: 15px;
+  width: 100%;
+  height: 150px;
+  left: 15%;
+  bottom: -80px !important;
+  font-family: Elevon;
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
+}
+
 .slide__button {
   position: absolute;
   top: 50%;

@@ -19,8 +19,8 @@
             <img class="front2" :src="stack.components[0].content.images[0].url"/>
             <h1 class="page__title">{{stack.name}}</h1>
           </NuxtLink>
+          <p class="info__paragraph">Przesuń aby zobaczyć więcej</p>
         </div>
-
       </div>
 
     <div class="carousel">
@@ -43,6 +43,7 @@ export default {
 
   data() {
     return {
+      autoSwiper: true,
       stackableContent: null,
       touch: {
         startX: 0,
@@ -89,19 +90,20 @@ export default {
     this.$el.addEventListener('touchmove', event => this.touchmove(event));
     this.$el.addEventListener('touchend', () => this.touchend());
     const timeout = () => {
+          if (this.autoSwiper === true) {
+            setTimeout(() => {
+              if(this.currentIndex >= this.stackableContent.length - 1) {
+                this.currentIndex = 0
+              } else {
+                this.currentIndex = this.currentIndex + 1
+              }
 
-      setTimeout(() => {
-        if(this.currentIndex >= this.stackableContent.length - 1) {
-          this.currentIndex = 0
-        } else {
-          this.currentIndex = this.currentIndex + 1
-        }
+              timeout()
+            },5000)
+          }
 
-        timeout()
-      },5000)
     }
-
-    timeout();
+      timeout();
   },
   methods: {
 
@@ -114,22 +116,30 @@ export default {
       this.touch.endX = event.touches[0].clientX
     },
     touchend() {
-
+        console.log(this.autoSwiper)
       if(!this.touch.endX || Math.abs(this.touch.endX - this.touch.startX) < 20) {
         return;
       }
       if(this.touch.endX < this.touch.startX) {
         if(this.currentIndex >= this.stackableContent.length - 1) {
           this.currentIndex = 0
+          this.autoSwiper = false;
         } else {
           this.currentIndex = this.currentIndex + 1
+          this.autoSwiper = false;
+
         }
       } else {
         if(this.currentIndex <= 0) {
           this.currentIndex = this.stackableContent.length - 1
+          this.autoSwiper = false;
+
         } else {
           this.currentIndex = this.currentIndex - 1
-        }      }
+          this.autoSwiper = false;
+
+        }
+      }
     },
   },
   head() {
