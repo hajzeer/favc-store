@@ -19,19 +19,13 @@ $defaultScale: 1 - ($cardsScaleOffset * $cardsTotal);
 }
 
 
-.crystallize-components-images >>> picture {
-  min-height: 300px;
-}
+
 
 .crystallize-components-images *:nth-child(3n) {
   grid-column-start: span 2;
 }
 
-.crystallize-components-images >>> img {
-  height: 100%;
-  width: 100%;
 
-}
 
 /**
  * Wrapper of the image
@@ -120,25 +114,11 @@ $defaultScale: 1 - ($cardsScaleOffset * $cardsTotal);
   max-width: 100%;
 }
 
-.crystallize-components-images__image-wrapper >>> figure {
-  height: 100%;
-}
 
-.crystallize-components-images__image-wrapper >>> img {
-  object-fit: cover;
-  overflow: hidden;
-  width: auto;
-  height: 60vh;
-  border: 1px solid #dfdfdf;
-}
 
 .crystallize-components-images__image-wrapper:first-child {
   width: 100%;
 }
 
 
-@media screen and (max-width: 499px) {
-  .crystallize-components-images >>> picture {
-    min-height: 100px;
-  }
-}
+

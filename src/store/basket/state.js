@@ -1,6 +1,9 @@
 /*
  * All the status the cart can have.
  */
+
+import appConfig from "../../../app.config.json";
+
 export const BASKET_STATUS = {
   NOT_HYDRATED: 'not-hydrated',
   HYDRATE: 'hydrate',
@@ -21,6 +24,13 @@ export const BASKET_INITIAL_STATE = {
      *  - priceVariantIdentifier
      *  - quantity
      */
+    locale: {
+      locale: "pl",
+      displayName: "pl",
+      appLanguage: "pl",
+      crystallizeCatalogueLanguage: "pl",
+      crystallizePriceVariant: "default",
+    },
     cart: [],
     voucherCode: null,
   },

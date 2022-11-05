@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@crystallize/content-transformer": "^6.1.0",
+    "@stripe/stripe-js": "^1.42.1",
     "@videojs/vhs-utils": "^3.0.1",
     "@vue-stripe/vue-stripe": "^4.4.4",
     "bl": "^5.0.0",

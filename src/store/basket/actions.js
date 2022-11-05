@@ -26,6 +26,9 @@ export default {
       });
     }
   },
+  empty (context, cartObj) {
+    context.commit("EMPTY", cartObj)
+  } ,
 
   updateServerBasket(context) {
     const { locales, locale: localeCode } = this.$i18n;

@@ -5,6 +5,13 @@
     padding-top: 130px;
 }
 
+@media (min-width: 1024px) {
+    .checkout-page__inner {
+        padding-top: 200px;
+        width: 70%;
+    }
+}
+
 /**
  * We display the items in column format and separate them, so the payment
  * summary is displayed at the bottom of the cart.

@@ -42,7 +42,7 @@ import appConfig from "./app.config.json";
 
 const defaultLocale = appConfig.locale || {
   locale: "pl",
-  displayName: "Polish",
+  displayName: "pl",
   appLanguage: "pl",
   crystallizeCatalogueLanguage: "pl",
   crystallizePriceVariant: "default",

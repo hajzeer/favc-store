@@ -20,6 +20,12 @@ export default {
     state.status = BASKET_STATUS.READY
   },
 
+  EMPTY(state, cartObj) {
+    state.clientBasket.cart = cartObj
+    state.serverBasket = cartObj
+    localStorage.removeItem("app-basket")
+  },
+
   actionOnCartItem(state, { action, product }) {
     const { sku, path } = product
     if (!sku || !path) {
@@ -49,6 +55,8 @@ export default {
     if (action === 'increment-item' || action === 'add-item') {
       state.clientBasket.cart[itemIndex].quantity += 1;
     }
+
+
 
     const hasOnlyOneItemOfTypeInCart = state.clientBasket.cart[itemIndex].quantity === 1
     /**

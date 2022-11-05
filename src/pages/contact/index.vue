@@ -1,5 +1,18 @@
 <template>
-<div class="container">contact</div>
+<div class="container">
+  <div>
+    <h2>
+      KONTAKT
+    </h2>
+    <p>
+      Prosimy o kontakt w pod adresem mailowym:
+    </p>
+    <a href="mailto:store@yfavc.com">
+      store@yfavc.com
+    </a>
+  </div>
+
+</div>
 </template>
 
 <script>

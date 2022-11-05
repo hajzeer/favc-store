@@ -62,14 +62,14 @@
         </div>
         <div class="payment__row">
           <div class="payment__input-group">
-            <label for="payment__line" class="payment__label">
+            <label for="payment__street" class="payment__label">
               {{ $t("common.streetAddress") }}
             </label>
             <input
-                v-model="line"
+                v-model="street"
                 type="text"
-                id="payment__line"
-                name="payment__line"
+                id="payment__street"
+                name="payment__street"
                 class="payment__input"
                 required
             />
@@ -90,14 +90,14 @@
             />
           </div>
           <div class="payment__input-group">
-            <label for="payment__zip" class="payment__label">
+            <label for="payment__postalCode" class="payment__label">
               {{ $t("common.postalCode") }}
             </label>
             <input
-                v-model="zip"
+                v-model="postalCode"
                 type="text"
-                id="payment__zip"
-                name="payment__zip"
+                id="payment__postalCode"
+                name="payment__postalCode"
                 class="payment__input"
                 required
             />
@@ -181,18 +181,19 @@ export default {
     const initialPhone = "";
 
     const checkoutModel = {
-      basketModel: this.$store.state.basket,
+      basketModel: this.$store.state.basket.clientBasket,
       customer: {
         firstName: initialFirstName,
         lastName: initialLastName,
-        phone: initialPhone,
         addresses: [
           {
             type: "billing",
             email: initialEmail || null,
-            line: initialLine || null,
+            street: initialLine || null,
             city: initialCity || null,
-            zip: initialZip || null,
+            postalCode: initialZip || null,
+            phone: initialPhone || null,
+            country: "pl"
           },
         ],
       },
@@ -207,10 +208,11 @@ export default {
       firstName: initialFirstName,
       lastName: initialLastName,
       email: initialEmail,
-      line: initialLine,
+      street: initialLine,
       city: initialCity,
-      zip: initialZip,
+      postalCode: initialZip,
       phone: initialPhone,
+      country: "pl",
       checkoutModel,
       selectedPaymentProvider: null,
       isPaymentProvidersLoading: true,
@@ -269,14 +271,14 @@ export default {
     city(newValue) {
       this.checkoutModel.customer.addresses[0].city = newValue;
     },
-    line(newValue) {
-      this.checkoutModel.customer.addresses[0].line = newValue;
+    street(newValue) {
+      this.checkoutModel.customer.addresses[0].street = newValue;
     },
-    zip(newValue) {
-      this.checkoutModel.customer.addresses[0].zip = newValue;
+    postalCode(newValue) {
+      this.checkoutModel.customer.addresses[0].postalCode = newValue;
     },
     phone(newValue) {
-      this.checkoutModel.customer.phone = newValue;
+      this.checkoutModel.customer.addresses[0].phone = newValue;
     },
   },
   methods: {

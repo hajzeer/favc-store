@@ -1,13 +1,16 @@
 <template>
   <div>
-    <template v-if="publishableKey">
-      <StripeElementCard
+    <template v-if="publishableKey && isDisabled === false">
+      <StripeElementPayment
         ref="stripeCardRef"
         :pk="publishableKey"
-        :hidePostalCode="true"
-        @token="handleStripeToken"
+        :elements-options="elementsOptions"
+        :confirm-params="confirmParams"
+        v-if="!isLoading"
+        :redirect="redirect"
+
       />
-      <Button @click="handleSubmit" alignment="center" type="button" class="submit__button">
+      <Button @click="handleSubmit" :disabled="isDisabled" alignment="center" type="button" class="submit__button">
         {{ $t("checkout.payNow") }}
       </Button>
     </template>
@@ -17,10 +20,11 @@
 
 <script>
 import { serviceApi } from "/lib/service-api";
-import { StripeElementCard } from "@vue-stripe/vue-stripe";
+import { StripeElementPayment } from "@vue-stripe/vue-stripe";
+import {loadStripe} from '@stripe/stripe-js'
 
 export default {
-  components: { StripeElementCard },
+  components: { StripeElementPayment },
   props: {
     checkoutModel: {
       type: Object,
@@ -28,8 +32,34 @@ export default {
   },
   data() {
     return {
+      isDisabled: false,
+      orderId: '',
+      stripePaymentIntent: null,
       status: "idle",
+      redirect: "if_required",
+      isLoading: true,
       publishableKey: null,
+      elementsOptions: {
+
+        appearance: {
+          theme: 'night'
+        }, // appearance options
+      },
+      confirmParams: {
+        return_url:  `http://192.168.0.220:3000/confirmation/${this.orderId}`, // success url
+        payment_method_data: {
+          billing_details: {
+            name: `${this.checkoutModel.customer.firstName} ${this.checkoutModel.customer.lastName}`,
+            email: `${this.checkoutModel.customer.addresses[0].email}`,
+            address: {
+              city: `${this.checkoutModel.customer.addresses[0].city}`,
+              country: `${this.checkoutModel.customer.addresses[0].country}`,
+              line1: `${this.checkoutModel.customer.addresses[0].street}`,
+              postal_code: `${this.checkoutModel.customer.addresses[0].postalCode}`
+            }
+          }
+        },
+      },
     };
   },
   async beforeCreate() {
@@ -47,15 +77,91 @@ export default {
 
     this.publishableKey = data.paymentProviders.stripe.config.publishableKey;
   },
+  mounted() {
+    this.generatePaymentIntent();
+
+  },
+
   methods: {
-    async handleStripeToken(token) {
-      // 1. Confirm Card Payment
-      // 2. If payment intent succeeded, do "mutation confirmStripeOrder"
-      // 3. Redirect to /confirmation/{crystallizeOrderId}?emptyBasket
+    async generatePaymentIntent() {
+
+      this.stripePaymentIntent = await serviceApi({
+        query: `
+        mutation StripePaymentIntent($checkoutModel: CheckoutModelInput!) {
+          paymentProviders {
+            stripe {
+              createPaymentIntent(checkoutModel: $checkoutModel)
+            }
+          }
+        }
+        `,
+        variables: {
+          checkoutModel: this.checkoutModel
+        }
+      })
+
+      this.elementsOptions.clientSecret =
+          this.stripePaymentIntent?.data?.paymentProviders?.stripe
+              ?.createPaymentIntent?.client_secret;
+      this.status = this.stripePaymentIntent.status
+
+      this.isLoading = false;
+
+    },
+    async go() {
+      const stripe = await loadStripe(`${this.publishableKey}`);
+      const { error, paymentIntent } = await stripe.retrievePaymentIntent(
+          this.elementsOptions.clientSecret
+      );
+      if (error) {
+        this.status = error
+      } else {
+        this.status = paymentIntent.status
+        this.isDisabled = true;
+
+      }
+      if(this.status === "succeeded") {
+        const response = await serviceApi({
+          query: `
+              mutation confirmStripeOrder($checkoutModel: CheckoutModelInput!, $paymentIntentId: String!) {
+                paymentProviders {
+                  stripe {
+                    confirmOrder(checkoutModel: $checkoutModel, paymentIntentId: $paymentIntentId) {
+                      success
+                      orderId
+                    }
+                  }
+                }
+              }
+            `,
+          variables: {
+            checkoutModel: this.checkoutModel,
+            paymentIntentId: paymentIntent.id
+          }
+        });
+        const {
+          success,
+          orderId
+        } = response.data.paymentProviders.stripe.confirmOrder;
+
+        if (success) {
+          this.orderId = orderId
+          await this.$store.dispatch('orderId/setId', this.orderId)
+          await this.$store.dispatch('basket/empty', [])
+          await this.$router.push(`/confirmation/${orderId}`)
+        } else {
+          console.log("err")
+        }
+      } else {
+        this.isDisabled = false
+      }
+
     },
     handleSubmit() {
       this.status = "confirming";
+      this.go();
       this.$refs.stripeCardRef.submit();
+
     },
   },
 };
@@ -65,5 +171,6 @@ export default {
 
 .submit__button {
   background: var(--color-text-main);
+  margin-top: 25px
 }
 </style>

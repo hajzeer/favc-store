@@ -21,7 +21,7 @@ export default {
     },
     "checkout": {
         "title": "Płatność",
-        "payNow": "Przejdź do płatności",
+        "payNow": "Zapłać",
         "choosePaymentMethod": "Wybierz sposób płatności",
         "noPaymentProvidersConfigured": "No payment providers are configured",
         "paymentProviderNotConfigured": "Payment provider {name} is not configured",
