@@ -19,6 +19,9 @@
             <p>
               {{ item.name }}
             </p>
+            <p>
+              {{ item.quantity }}
+            </p>
             <p class="price">
               {{ item.price.gross }} {{item.price.currency}}
             </p>
@@ -106,6 +109,13 @@ export default {
   width: 100%;
   min-height: 100vh;
   height: auto;
+
+  @media (min-width: 1024px) {
+    min-height: 100vh;
+    width: 60%;
+    position: relative;
+    left: 35%;
+  }
 }
 
 h2 {
@@ -113,6 +123,10 @@ h2 {
   color: var(--color-text-main);
   align-self: flex-start;
   width: 100%;
+
+  @media (min-width: 1024px) {
+    font-size: 25px;
+  }
 }
 
 .address__list {
@@ -141,6 +155,11 @@ li {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (min-width: 1024px) {
+    margin-top: 50px;
+
+  }
 }
 
 .container__inner--spinner {
