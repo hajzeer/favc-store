@@ -2,7 +2,7 @@
     <div  class="container">
       <div v-if="loading" class="container__inner">
         <h2>Dziękujemy za zamówienie {{innerOrder.customer.firstName}}</h2>
-        <p>
+        <p class="info__paragraph">
           Twoje zamówienie zostanie dostarczone na adres:
         </p>
         <ul>
@@ -116,6 +116,9 @@ export default {
     position: relative;
     left: 35%;
   }
+}
+.info__paragraph {
+  align-self: flex-start;
 }
 
 h2 {
