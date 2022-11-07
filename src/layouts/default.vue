@@ -30,6 +30,15 @@
               </LayoutHeader>
               <nuxt />
               <LayoutFooter/>
+              <div class="social__media__div">
+                <img src="/Group%2098.png"/>
+                <a href="https://www.youtube.com/channel/UCHZ3EV3Si5y_DYjVvXDuV_w">
+                  <img src="/ig.png"/>
+                </a>
+                <a href="https://www.instagram.com/ciotkasandra/">
+                  <img src="/yt.png"/>
+                </a>
+              </div>
             </template>
           </LayoutWithAsideView>
         </BasketProvider>
@@ -159,5 +168,30 @@ export default {
   .layout__actions > * {
     margin-left: 0.35rem;
   }
+}
+
+.social__media__div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 20px;
+  bottom: 40px;
+
+  img {
+    width: 30px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  a {
+    img {
+      width: 50px;
+      height: 50px;
+      margin: 0;
+    }
+  }
+
 }
 </style>

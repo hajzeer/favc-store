@@ -4,8 +4,14 @@
 
   div {
     position: absolute;
-    left: 50%;
-    top: 35%;
+    left: 20px;
+    top: 30%;
+
+    @media (min-width: 1024px) {
+      position: absolute;
+      left: 50%;
+      top: 35%;
+    }
   }
 
   h2 {

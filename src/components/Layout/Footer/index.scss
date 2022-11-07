@@ -34,12 +34,14 @@ footer {
     font-family: montserrat, sans-serif;
     font-size: var(--font-size-s);
     letter-spacing: 1px;
+    margin-bottom: 10px;
+
     a {
         text-decoration: none;
         outline: none;
     }
     li {
-        padding: 5px 20px;
+        padding: 0 20px;
         text-decoration: none;
         transition: all 0.1s ease-out;
         outline: none !important;
@@ -60,14 +62,19 @@ footer {
     align-items: center;
     font-family: montserrat, sans-serif;
 
-    img {
-        width: 40px;
-        height: 40px;
-    }
 
     p {
-        margin: 0;
         font-size: 11px;
+        margin-left: 20px;
+        margin-top: 15px;
+
+        a {
+            text-decoration: none;
+        }
     }
+
+
 }
+
+
 

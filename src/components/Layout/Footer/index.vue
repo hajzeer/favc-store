@@ -14,8 +14,8 @@
         </a>
       </ul>
     </div>
+
     <div class="creator__div">
-      <img src="/breath.png"/>
       <p>©2022 Wszelkie prawa zastrzeżone <br/>
         Created with love for design <br/>
         Let's be unique <a href="https://www.breathdesignstudio.com/">BREATH DESIGN STUDIO</a></p>
@@ -28,10 +28,10 @@ export default {
   data() {
     return {
       hrefList: [
-        {name: "Dostawa i płatność", href: '/delivery&payment'},
+        {name: "Dostawa i płatności", href: '/delivery&payment'},
         {name: "Zwroty i reklamacje", href: '/complaint'},
         {name: "Kontakt", href: '/contact'},
-        {name: "Regulamin", href: 'https://www.breathdesignstudio.com/'},
+        {name: "Regulamin", href: '/Regulamin.pdf'},
         {name: "Polityka Prywatności", href: 'https://www.breathdesignstudio.com/'}
       ]
     }

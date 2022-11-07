@@ -55,7 +55,9 @@ export default {
               city: `${this.checkoutModel.customer.addresses[0].city}`,
               country: `${this.checkoutModel.customer.addresses[0].country}`,
               line1: `${this.checkoutModel.customer.addresses[0].street}`,
-              postal_code: `${this.checkoutModel.customer.addresses[0].postalCode}`
+              postal_code: `${this.checkoutModel.customer.addresses[0].postalCode}`,
+              phone: `${this.checkoutModel.customer.addresses[0].phone}`,
+
             }
           }
         },
