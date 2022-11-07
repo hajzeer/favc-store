@@ -32,7 +32,7 @@ export default {
         {name: "Zwroty i reklamacje", href: '/complaint'},
         {name: "Kontakt", href: '/contact'},
         {name: "Regulamin", href: '/Regulamin.pdf'},
-        {name: "Polityka Prywatności", href: 'https://www.breathdesignstudio.com/'}
+        {name: "Polityka Prywatności", href: '/Polityka-prywatności.pdf'}
       ]
     }
   }
