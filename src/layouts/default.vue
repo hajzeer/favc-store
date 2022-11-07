@@ -177,7 +177,7 @@ export default {
   align-items: center;
   position: absolute;
   right: 20px;
-  bottom: 40px;
+  bottom: 80px;
 
   img {
     width: 30px;
