@@ -55,7 +55,7 @@ header {
     --padding-lateral: var(--viewport-md-lateral-space);
     align-items: center;
     justify-content: flex-start;
-    margin: 0 auto 3em auto;
+    margin: 0 auto 3em 0;
     max-width: var(--viewport-context-extended-max-width);
     min-height: 150px;
     padding-right: var(--padding-lateral);
