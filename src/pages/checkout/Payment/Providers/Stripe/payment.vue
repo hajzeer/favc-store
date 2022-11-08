@@ -51,12 +51,12 @@ export default {
           billing_details: {
             name: `${this.checkoutModel.customer.firstName} ${this.checkoutModel.customer.lastName}`,
             email: `${this.checkoutModel.customer.addresses[0].email}`,
+            phone: `${this.checkoutModel.customer.addresses[0].phone}`,
             address: {
               city: `${this.checkoutModel.customer.addresses[0].city}`,
               country: `${this.checkoutModel.customer.addresses[0].country}`,
               line1: `${this.checkoutModel.customer.addresses[0].street}`,
               postal_code: `${this.checkoutModel.customer.addresses[0].postalCode}`,
-              phone: `${this.checkoutModel.customer.addresses[0].phone}`,
 
             }
           }
