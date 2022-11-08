@@ -5,11 +5,14 @@
       KONTAKT
     </h2>
     <p>
-      Prosimy o kontakt w pod adresem mailowym:
+      BIURO OBSŁUGI KLIENTA:
     </p>
     <a href="mailto:store@yfavc.com">
       store@yfavc.com
     </a>
+    <p>
+      Zapraszamy do kontaktu
+    </p>
   </div>
 
 </div>
