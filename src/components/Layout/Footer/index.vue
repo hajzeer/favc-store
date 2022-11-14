@@ -18,7 +18,7 @@
     <div class="creator__div">
       <p>©2022 Wszelkie prawa zastrzeżone <br/>
         Created with love for design <br/>
-        Let's be unique <a href="https://www.breathdesignstudio.com/">BREATH DESIGN STUDIO</a></p>
+        Let's be unique BREATH DESIGN STUDIO</p>
     </div>
   </footer>
 </template>
