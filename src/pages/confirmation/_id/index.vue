@@ -11,6 +11,7 @@
           <li class="address__list">{{innerOrder.customer.addresses[0].postalCode}}, {{innerOrder.customer.addresses[0].city}}</li>
         </ul>
 
+
         <h2>Twoje zamówienie:</h2>
         <ul class="tiny-basket__list">
           <div class="line"/>
