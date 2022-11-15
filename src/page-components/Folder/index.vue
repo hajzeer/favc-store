@@ -102,7 +102,6 @@ export default {
       this.stackableContent = getFolderStackableContent(folder);
       this.nonFolderItems = children?.filter((c) => c.type !== "folder");
 
-      console.log(this.folder)
     }
   },
   head() {

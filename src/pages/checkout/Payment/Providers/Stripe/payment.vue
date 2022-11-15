@@ -46,7 +46,7 @@ export default {
         }, // appearance options
       },
       confirmParams: {
-        return_url:  `http://192.168.0.220:3000/confirmation/${this.orderId}`, // success url
+        return_url:  `http://192.168.0.220:3000/confirmation/`, // success url
         payment_method_data: {
           billing_details: {
             name: `${this.checkoutModel.customer.firstName} ${this.checkoutModel.customer.lastName}`,
@@ -57,7 +57,6 @@ export default {
               country: `${this.checkoutModel.customer.addresses[0].country}`,
               line1: `${this.checkoutModel.customer.addresses[0].street}`,
               postal_code: `${this.checkoutModel.customer.addresses[0].postalCode}`,
-
             }
           }
         },
@@ -106,6 +105,8 @@ export default {
           this.stripePaymentIntent?.data?.paymentProviders?.stripe
               ?.createPaymentIntent?.client_secret;
       this.status = this.stripePaymentIntent.status
+      await this.$store.dispatch('orderId/setId', this.elementsOptions)
+      await this.$store.dispatch('orderId/setModel', this.checkoutModel)
 
       this.isLoading = false;
 
@@ -119,7 +120,10 @@ export default {
         this.status = error
       } else {
         this.status = paymentIntent.status
-        this.isDisabled = true;
+
+        setTimeout(() => {
+          this.isDisabled = true;
+        }, 2500)
 
       }
       if(this.status === "succeeded") {

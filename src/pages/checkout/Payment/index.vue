@@ -183,8 +183,8 @@ export default {
     const checkoutModel = {
       basketModel: this.$store.state.basket.clientBasket,
       customer: {
-        firstName: initialFirstName,
-        lastName: initialLastName,
+        firstName: initialFirstName || null,
+        lastName: initialLastName || null,
         addresses: [
           {
             type: "billing",
@@ -195,6 +195,15 @@ export default {
             phone: initialPhone || null,
             country: "pl"
           },
+          {
+            type: 'delivery',
+            email: initialEmail || null,
+            street: initialLine || null,
+            city: initialCity || null,
+            postalCode: initialZip || null,
+            phone: initialPhone || null,
+            country: "pl"
+          }
         ],
       },
       confirmationURL: this.getURL(

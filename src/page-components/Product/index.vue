@@ -161,7 +161,6 @@ export default {
         isRelatedProductsComponent
       )?.content?.items;
     }
-    console.log(this.selectedVariant)
     },
 
   /**
