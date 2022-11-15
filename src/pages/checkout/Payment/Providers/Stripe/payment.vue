@@ -46,7 +46,7 @@ export default {
         }, // appearance options
       },
       confirmParams: {
-        return_url:  `http://192.168.0.220:3000/confirmation/`, // success url
+        return_url:  `https://yfavc.com/confirmation/`, // success url
         payment_method_data: {
           billing_details: {
             name: `${this.checkoutModel.customer.firstName} ${this.checkoutModel.customer.lastName}`,

@@ -87,6 +87,8 @@ export default {
 
           if (success) {
             this.orderId = orderId
+            localStorage.removeItem("id")
+            localStorage.removeItem("model")
             await this.$store.dispatch('orderId/setId', this.orderId)
             await this.$store.dispatch('basket/empty', [])
             await this.$router.push(`/confirmation/${orderId}`)
