@@ -74,7 +74,8 @@ export default {
     CRYSTALLIZE_TENANT_IDENTIFIER: process.env.CRYSTALLIZE_TENANT_IDENTIFIER,
     SERVICE_API_URL: process.env.SERVICE_API_URL,
     // Used to generate the hreflang attributes for SEO purposes
-    SITE_URL: process.env.SITE_URL
+    SITE_URL: process.env.SITE_URL,
+    INPOST_TOKEN: process.env.INPOST_TOKEN
   },
   srcDir: "src/",
   components: true, // NuxtJS will import automatically yor components
@@ -134,12 +135,17 @@ export default {
         content: process.env.npm_package_description || "",
       },
     ],
+    script: [
+      {src: "https://geowidget.inpost.pl/inpost-geowidget.js", defer: true},
+    ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       { rel: "mask-icon", href: "/mask-icon.svg", color: "#5bbad5" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
       { rel: "stylesheet", href:"https://use.typekit.net/tlu1pje.css"},
-   ],
+      { rel: "stylesheet", href:"https://geowidget.inpost.pl/inpost-geowidget.css"},
+
+    ],
   },
   /*
    ** Customize the progress-bar color

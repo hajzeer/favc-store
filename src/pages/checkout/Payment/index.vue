@@ -103,6 +103,8 @@
             />
           </div>
         </div>
+        <inpost-geowidget :onpoint="onPoint" :token='token' language='pl' config='parcelcollect'></inpost-geowidget>
+
       </div>
     </Section>
     <Section :title="$t('checkout.choosePaymentMethod')">
@@ -226,6 +228,7 @@ export default {
       selectedPaymentProvider: null,
       isPaymentProvidersLoading: true,
       paymentProvidersEnabled: [],
+      token: process.env.INPOST_TOKEN
     };
   },
   /**
@@ -306,6 +309,9 @@ export default {
        */
       return `${location.protocol}//${location.host}${path}`;
     },
+    onPoint(e) {
+      console.log(e.details.name)
+    }
   },
 };
 </script>
