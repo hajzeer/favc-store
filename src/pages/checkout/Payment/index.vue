@@ -103,7 +103,7 @@
             />
           </div>
         </div>
-        <inpost-geowidget :onpoint="onPoint" token="<%= process.env.INPOST_TOKEN %>" language='pl' config='parcelcollect'></inpost-geowidget>
+        <inpost-geowidget :onpoint="onPoint" token="<%= process.env.INPOST_TOKEN %>" language='pl' config='parcelCollect247'></inpost-geowidget>
 
       </div>
     </Section>
