@@ -16,7 +16,7 @@
       </ul>
       <div class="tiny-basket-item__price">{{ priceFormatted }}</div>
     </div>
-    <div class="tiny-basket-item__actions">
+    <div class="tiny-basket-item__actions" v-if="visible">
       <button
         @click="handleIncreaseQuantity"
         class="tiny-basket-item__quantity-modifier"
@@ -52,6 +52,7 @@ export default {
         sku: this.sku,
         path: this.path,
       },
+      visible: true,
     };
   },
   computed: {
@@ -108,6 +109,11 @@ export default {
       type: Array,
       required: false,
     },
+  },
+  mounted() {
+    if(this.path === "/delivery/delivery-cost") {
+      this.visible = false
+    }
   },
   methods: {
     handleIncreaseQuantity() {

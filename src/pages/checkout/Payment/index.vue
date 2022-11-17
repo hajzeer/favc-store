@@ -106,12 +106,11 @@
         <div class="payment__row">
           <div class="payment__input-group">
             <button class="delivery__button"
-                    v-model="meta"
-              :disabled="selected.first" @click="handleClick(1)">Paczkomat <br/> 13,99 zł</button>
+ :disabled="selected.first" @click="handleClick(1)">Paczkomat <br/> 13,99 zł</button>
           </div>
           <div class="payment__input-group">
             <button class="delivery__button"
-            :disabled="selected.second" @click="handleClick(2)">Pod drzwi <br/> 14,99 zł</button>
+ :disabled="selected.second" @click="handleClick(2)">Pod drzwi <br/> 14,99 zł</button>
           </div>
         </div>
         <div class="map__div" v-if="parcelBox === 1" :class="{active: parcelBox}">
