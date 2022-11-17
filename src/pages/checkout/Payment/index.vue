@@ -105,12 +105,13 @@
         </div>
         <div class="payment__row">
           <div class="payment__input-group">
-            <button class="delivery__button"                 v-model="additionalInformation"
- :disabled="selected.first" @click="handleClick(1)">Paczkomat <br/> 13,99 zł</button>
+            <button class="delivery__button"
+                    v-model="meta"
+              :disabled="selected.first" @click="handleClick(1)">Paczkomat <br/> 13,99 zł</button>
           </div>
           <div class="payment__input-group">
-            <button class="delivery__button"                 v-model="additionalInformation"
- :disabled="selected.second" @click="handleClick(2)">Pod drzwi <br/> 14,99 zł</button>
+            <button class="delivery__button"
+            :disabled="selected.second" @click="handleClick(2)">Pod drzwi <br/> 14,99 zł</button>
           </div>
         </div>
         <div class="map__div" v-if="parcelBox === 1" :class="{active: parcelBox}">
@@ -313,8 +314,8 @@ export default {
     firstName(newValue) {
       this.checkoutModel.customer.firstName = newValue;
     },
-    additionalInformation() {
-      this.checkoutModel.additionalInformation = this.parcel;
+    meta() {
+      this.checkoutModel.meta[0].value = this.parcel;
     },
     /**
      * When the model of lastName changes
