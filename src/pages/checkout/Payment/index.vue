@@ -105,16 +105,18 @@
         </div>
         <div class="payment__row">
           <div class="payment__input-group">
-            <button class="delivery__button" :disabled="selected.first" @click="handleClick(1)">Paczkomat <br/> 13,99 zł</button>
+            <button class="delivery__button"                 v-model="additionalInformation"
+ :disabled="selected.first" @click="handleClick(1)">Paczkomat <br/> 13,99 zł</button>
           </div>
           <div class="payment__input-group">
-            <button class="delivery__button" :disabled="selected.second" @click="handleClick(2)">Pod drzwi <br/> 14,99 zł</button>
+            <button class="delivery__button"                 v-model="additionalInformation"
+ :disabled="selected.second" @click="handleClick(2)">Pod drzwi <br/> 14,99 zł</button>
           </div>
         </div>
         <div class="map__div" v-if="parcelBox === 1" :class="{active: parcelBox}">
           <inpost-geowidget onpoint='handleOnPoint' token='eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJzQlpXVzFNZzVlQnpDYU1XU3JvTlBjRWFveFpXcW9Ua2FuZVB3X291LWxvIn0.eyJleHAiOjE5ODQwMTkwMzQsImlhdCI6MTY2ODY1OTAzNCwianRpIjoiNDI4OTQ2MTItN2FlNC00NzE0LWJiYTctMjc4ODBjY2ZlZTU3IiwiaXNzIjoiaHR0cHM6Ly9sb2dpbi5pbnBvc3QucGwvYXV0aC9yZWFsbXMvZXh0ZXJuYWwiLCJzdWIiOiJmOjEyNDc1MDUxLTFjMDMtNGU1OS1iYTBjLTJiNDU2OTVlZjUzNTpVS0hobkFGZGFKTEZnOVYtakpZcGZBIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic2hpcHgiLCJzZXNzaW9uX3N0YXRlIjoiM2JmNzNmOWQtMTZkNC00YWU5LTgyNTItOWFlMWU3NjQ2YjYyIiwic2NvcGUiOiJvcGVuaWQgYXBpOmFwaXBvaW50cyIsInNpZCI6IjNiZjczZjlkLTE2ZDQtNGFlOS04MjUyLTlhZTFlNzY0NmI2MiIsImFsbG93ZWRfcmVmZXJyZXJzIjoieWZhdmMuY29tLHd3dy55ZmF2Yy5jb20iLCJ1dWlkIjoiNGY5MGRkNzQtYzNkMS00NjM5LWFlYTItZjM2ZDIzMTUzODFlIn0.kkOF9DhdrEkkO_stiuC_82yh6aZwS83QVOIL35N-VtlU0C_kttmEAdQw7cwyz6GQsdnf7x7Aq72HwW68os3jI7JBVu3JUNCgkdabyGd70MrbmrMku-hOBE_E5-z30DvIUGd52EANp5mtgPz-wGO2j4aIiiLsCO3FO2NZwajzPhiKnrFPt4cqKZfNGdCscpswMGo5URsnd9x2F9IpUPtmedEo5uPIKRuzfcsrex1vIX68O3V3u-p19MTDJeCUydIRfAxs0svojhxw8opBRTj3J9Lq8_CHxKM9UflljALtJHZsU50RLNXMuExEYJZhS3kdL35aKXYhgz6B8BRbxdq9Ng' language='pl'  config='parcelCollect'></inpost-geowidget>
           <p v-if="parcelBoxSelected">
-            TWÓJ PACZKOMAT: {{checkoutModel.customer.additionalInformation}}
+            TWÓJ PACZKOMAT: {{checkoutModel.additionalInformation}}
           </p>
         </div>
       </div>
@@ -195,10 +197,11 @@ export default {
     const initialCity = "";
     const initialZip = "";
     const initialPhone = "";
+    const addInfo = "";
 
     const checkoutModel = {
       basketModel: this.$store.state.basket.clientBasket,
-      additionalInformation: "" || "bez paczkomatu",
+      additionalInformation: addInfo || null,
       customer: {
         firstName: initialFirstName || null,
         lastName: initialLastName || null,
@@ -263,8 +266,8 @@ export default {
       selected: {
         first: null,
         second: null,
-      }
-
+      },
+      parcel: null,
     };
   },
   /**
@@ -303,6 +306,9 @@ export default {
      */
     firstName(newValue) {
       this.checkoutModel.customer.firstName = newValue;
+    },
+    additionalInformation() {
+      this.checkoutModel.additionalInformation = this.parcel;
     },
     /**
      * When the model of lastName changes
@@ -429,7 +435,7 @@ export default {
     },
     selectParcelBox(event) {
       this.parcelBoxSelected = true
-      this.checkoutModel.additionalInformation = event.details.name
+      this.parcel = event.details.name
     },
   },
   mounted() {
