@@ -146,6 +146,7 @@ export default {
 <style scoped lang="scss">
 .layout__actions {
   display: flex;
+
 }
 
 .blured__div {

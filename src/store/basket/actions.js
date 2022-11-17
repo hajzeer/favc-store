@@ -63,7 +63,7 @@ export default {
     context.commit('actionOnCartItem', { action: 'decrement-item', product });
   }),
 
-  drawAttentionToItem(context, { sku }) {
+  drawAttentionToItem(context, { sku, visible } ) {
     context.commit('draAttentionToItem', { sku })
     /**
      * If we're using Vuex modules feature, to dispatch actions from another module
@@ -71,7 +71,10 @@ export default {
      * 
      * FYI: https://vuex.vuejs.org/guide/modules.html#namespacing
      */
-    const configToDispatchActionsFromAnotherModule = { root: true }
-    context.dispatch("layout/showAside", {}, configToDispatchActionsFromAnotherModule);
+    if(visible === true) {
+      const configToDispatchActionsFromAnotherModule = { root: true }
+      context.dispatch("layout/showAside", {}, configToDispatchActionsFromAnotherModule);
+    }
+
   }
 }

@@ -105,13 +105,13 @@
         </div>
         <div class="payment__row">
           <div class="payment__input-group">
-            <button class="delivery__button" @click="handleClick(true)">Paczkomat <br/> 13,99 zł</button>
+            <button class="delivery__button" :disabled="selected.first" @click="handleClick(1)">Paczkomat <br/> 13,99 zł</button>
           </div>
           <div class="payment__input-group">
-            <button class="delivery__button" @click="handleClick(false)">Pod drzwi <br/> 14,99 zł</button>
+            <button class="delivery__button" :disabled="selected.second" @click="handleClick(2)">Pod drzwi <br/> 14,99 zł</button>
           </div>
         </div>
-        <div class="map__div" v-if="parcelBox" :class="{active: parcelBox}">
+        <div class="map__div" v-if="parcelBox === 1" :class="{active: parcelBox}">
           <inpost-geowidget onpoint='handleOnPoint' token='eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJzQlpXVzFNZzVlQnpDYU1XU3JvTlBjRWFveFpXcW9Ua2FuZVB3X291LWxvIn0.eyJleHAiOjE5ODQwMTkwMzQsImlhdCI6MTY2ODY1OTAzNCwianRpIjoiNDI4OTQ2MTItN2FlNC00NzE0LWJiYTctMjc4ODBjY2ZlZTU3IiwiaXNzIjoiaHR0cHM6Ly9sb2dpbi5pbnBvc3QucGwvYXV0aC9yZWFsbXMvZXh0ZXJuYWwiLCJzdWIiOiJmOjEyNDc1MDUxLTFjMDMtNGU1OS1iYTBjLTJiNDU2OTVlZjUzNTpVS0hobkFGZGFKTEZnOVYtakpZcGZBIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic2hpcHgiLCJzZXNzaW9uX3N0YXRlIjoiM2JmNzNmOWQtMTZkNC00YWU5LTgyNTItOWFlMWU3NjQ2YjYyIiwic2NvcGUiOiJvcGVuaWQgYXBpOmFwaXBvaW50cyIsInNpZCI6IjNiZjczZjlkLTE2ZDQtNGFlOS04MjUyLTlhZTFlNzY0NmI2MiIsImFsbG93ZWRfcmVmZXJyZXJzIjoieWZhdmMuY29tLHd3dy55ZmF2Yy5jb20iLCJ1dWlkIjoiNGY5MGRkNzQtYzNkMS00NjM5LWFlYTItZjM2ZDIzMTUzODFlIn0.kkOF9DhdrEkkO_stiuC_82yh6aZwS83QVOIL35N-VtlU0C_kttmEAdQw7cwyz6GQsdnf7x7Aq72HwW68os3jI7JBVu3JUNCgkdabyGd70MrbmrMku-hOBE_E5-z30DvIUGd52EANp5mtgPz-wGO2j4aIiiLsCO3FO2NZwajzPhiKnrFPt4cqKZfNGdCscpswMGo5URsnd9x2F9IpUPtmedEo5uPIKRuzfcsrex1vIX68O3V3u-p19MTDJeCUydIRfAxs0svojhxw8opBRTj3J9Lq8_CHxKM9UflljALtJHZsU50RLNXMuExEYJZhS3kdL35aKXYhgz6B8BRbxdq9Ng' language='pl'  config='parcelCollect'></inpost-geowidget>
         </div>
       </div>
@@ -146,6 +146,7 @@ import { serviceApi } from "/lib/service-api";
 import Section from "../Section";
 import StripeSelector from "./Providers/Stripe/selector";
 import StripePayment from "./Providers/Stripe/payment";
+import {getRelativePriceVariants} from "@@/lib/pricing";
 
 /**
  * Retrieves what payment providers have been enabled.
@@ -238,8 +239,27 @@ export default {
       selectedPaymentProvider: null,
       isPaymentProvidersLoading: true,
       paymentProvidersEnabled: [],
-      parcelBox: false,
+      parcelBox: null,
       parcelBoxSelected: false,
+      selectedVariant: {
+        sku: null,
+        path: null,
+
+      },
+      unselectedVariant: {
+        sku: null,
+        path: null,
+
+      },
+      specs: null,
+      relatedProducts: null,
+      isItemBeingAddedToCart: false,
+      addedItem: false,
+      selected: {
+        first: null,
+        second: null,
+      }
+
     };
   },
   /**
@@ -322,12 +342,92 @@ export default {
     },
     handleClick(el) {
        this.parcelBox = el
+
+      if(this.parcelBox === 1) {
+        this.selectedVariant.sku = 'paczkomat-1211243515123451345'
+        this.selectedVariant.path = '/delivery/delivery-cost'
+        this.unselectedVariant.sku = 'pod-dom-1241345341462345'
+        this.unselectedVariant.path = '/delivery/delivery-cost'
+        this.selected.first = true,
+            this.selected.second = false,
+        this. parcelBoxSelected = false,
+
+            this.isItemBeingAddedToCart = true;
+
+      } else if (this.parcelBox === 2) {
+        this.selectedVariant.sku = 'pod-dom-1241345341462345'
+        this.selectedVariant.path = '/delivery/delivery-cost'
+        this.unselectedVariant.sku = 'paczkomat-1211243515123451345'
+        this.unselectedVariant.path = '/delivery/delivery-cost'
+        this. parcelBoxSelected = true,
+            this.selected.first = false,
+            this.selected.second = true,
+        this.isItemBeingAddedToCart = true;
+
+
+      }
+      if(this.isItemBeingAddedToCart) {
+        this.addToBasket()
+      }
+
     },
+    addToBasket() {
+      if (this.addedItem) {
+        this.$store.dispatch("basket/removeItem", {
+          sku: this.unselectedVariant.sku,
+          path: this.unselectedVariant.path,
+        });
+      }
+
+      const { locales, locale: code } = this.$i18n;
+      const locale = locales.find((l) => l.locale === code) || locales[0];
+
+      const { getRelativePriceVariants } = require("../../../../lib/pricing");
+      const variantPricing = getRelativePriceVariants({
+        variant: this.selectedVariant,
+        locale,
+      });
+      const variantDiscountPrice = variantPricing?.discountPrice;
+      const variantDefaultPrice = variantPricing?.defaultPrice;
+
+      this.$store
+          .dispatch("basket/addItem", {
+            sku: this.selectedVariant.sku,
+            path: this.selectedVariant.path,
+            priceVariantIdentifier: variantDiscountPrice
+                ? variantDiscountPrice.identifier
+                : variantDefaultPrice.identifier || locale.crystallizePriceVariant,
+          })
+          .then(() => {
+            const TIME_TO_SHOW_SPINNER = 250;
+            const TIME_TO_ADD_ITEM_TO_CART = 250;
+            /**
+             * We add a delay so the spinner can be visualize for a small period of time.
+             */
+            setTimeout(() => {
+              this.isItemBeingAddedToCart = false;
+              this.addedItem = true;
+              setTimeout(() => {
+                this.$store.dispatch("basket/drawAttentionToItem", {
+                  sku: this.selectedVariant.sku,
+                  visible: false
+                });
+              }, TIME_TO_ADD_ITEM_TO_CART);
+            }, TIME_TO_SHOW_SPINNER);
+          })
+          .catch(() => {
+            /**
+             * If it failed, we make the spinner disappear too.
+             */
+            this.isItemBeingAddedToCart = false;
+          });
+    }
   },
   mounted() {
     document.addEventListener('handleOnPoint', (event) => {
       this.parcelBoxSelected = true
       this.checkoutModel.customer.addresses[0].city = event.details.name
+
     });
 
   }

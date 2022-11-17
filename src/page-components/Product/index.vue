@@ -236,6 +236,8 @@ export default {
             setTimeout(() => {
               this.$store.dispatch("basket/drawAttentionToItem", {
                 sku: this.selectedVariant.sku,
+                visible: true
+
               });
             }, TIME_TO_ADD_ITEM_TO_CART);
           }, TIME_TO_SHOW_SPINNER);
