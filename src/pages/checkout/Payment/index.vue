@@ -105,7 +105,7 @@
         </div>
         <div class="payment__row">
           <div class="payment__input-group">
-            <button class="delivery__button"                 v-model="value"
+            <button class="delivery__button"
  :disabled="selected.first" @click="handleClick(1)">Paczkomat <br/> 13,99 zł</button>
           </div>
           <div class="payment__input-group">
@@ -147,7 +147,7 @@
 </template>
 
 <script>
-import { serviceApi } from "/lib/service-api";
+import {serviceApi} from "/lib/service-api";
 import Section from "../Section";
 import StripeSelector from "./Providers/Stripe/selector";
 import StripePayment from "./Providers/Stripe/payment";
@@ -201,11 +201,12 @@ export default {
 
     const checkoutModel = {
       basketModel: this.$store.state.basket.clientBasket,
-      meta: {
+      meta: [
+          {
         key: 'PACZKOMAT',
         value: addInfo || null
-
-      },
+        },
+      ],
       customer: {
         firstName: initialFirstName || null,
         lastName: initialLastName || null,
@@ -445,8 +446,7 @@ export default {
     },
   },
   mounted() {
-    document.addEventListener('handleOnPoint', (event) => this.selectParcelBox(event));
-
+    this.$el.addEventListener('handleOnPoint', event => this.selectParcelBox(event));
   }
 };
 </script>
