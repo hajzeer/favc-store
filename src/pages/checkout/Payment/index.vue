@@ -426,7 +426,7 @@ export default {
   mounted() {
     document.addEventListener('handleOnPoint', (event) => {
       this.parcelBoxSelected = true
-      this.checkoutModel.customer.addresses[0].city = event.details.name
+      alert(event.details.name)
 
     });
 
