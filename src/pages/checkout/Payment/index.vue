@@ -104,7 +104,7 @@
           </div>
         </div>
         <div class="map__div">
-          <inpost-geowidget onpoint="afterPointSelected" token='<%= INPOST_TOKEN%>' language='pl'  config='parcelCollect'></inpost-geowidget>
+          <inpost-geowidget onpoint="afterPointSelected" token='eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJzQlpXVzFNZzVlQnpDYU1XU3JvTlBjRWFveFpXcW9Ua2FuZVB3X291LWxvIn0.eyJleHAiOjE5ODQwMTI3NDUsImlhdCI6MTY2ODY1Mjc0NSwianRpIjoiNTE0M2FjMDAtM2Q0OC00OTQwLWFiMDktYzU2MzQ3Y2ExYWU1IiwiaXNzIjoiaHR0cHM6Ly9sb2dpbi5pbnBvc3QucGwvYXV0aC9yZWFsbXMvZXh0ZXJuYWwiLCJzdWIiOiJmOjEyNDc1MDUxLTFjMDMtNGU1OS1iYTBjLTJiNDU2OTVlZjUzNTpVS0hobkFGZGFKTEZnOVYtakpZcGZBIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic2hpcHgiLCJzZXNzaW9uX3N0YXRlIjoiNGYwMDNmMGUtM2M1Yi00M2RlLWI0MDAtNTkyZjRjOTYzZDg3Iiwic2NvcGUiOiJvcGVuaWQgYXBpOmFwaXBvaW50cyIsInNpZCI6IjRmMDAzZjBlLTNjNWItNDNkZS1iNDAwLTU5MmY0Yzk2M2Q4NyIsImFsbG93ZWRfcmVmZXJyZXJzIjoieWZhdmMuY29tIiwidXVpZCI6IjRmOTBkZDc0LWMzZDEtNDYzOS1hZWEyLWYzNmQyMzE1MzgxZSJ9.aeI-MpzBpfDUrUnw2IRZuJg7Ap0fiToUCr_2yb-8HaC5ExEre-OflqjjUXQuupteUaFvwfIyaOVc6wcunlyxkZiOFQgyo5etW-S0cyEgwhHZHc29_AXSvTOmyM_bcmF5Yhnc_sJXt1KEIc_LoJYc68MHHh4uGCklm5bgmfYwJHu8OJf5PAVU2AzbzGfLvYnLhAXX8dsqw0ADDqQy5Lzl-rFtZ7MI8tBj78A-I0ov2G6PWrH7j8ndc6BEognPJ2f7dXPVOmRUK3z3GDpfEMcpDySKDtwA4SiuYloaEDgPXjfsFTS7He5lDwCM2G2Q2d4bbUJzXs_0BctidXa3JM_-7g' language='pl'  config='parcelCollect'></inpost-geowidget>
         </div>
       </div>
     </Section>
