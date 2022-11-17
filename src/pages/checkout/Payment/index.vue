@@ -192,12 +192,14 @@ export default {
     const initialCity = "";
     const initialZip = "";
     const initialPhone = "";
+    const addInfo = "";
 
     const checkoutModel = {
       basketModel: this.$store.state.basket.clientBasket,
       customer: {
         firstName: initialFirstName || null,
         lastName: initialLastName || null,
+        additionalInformation: addInfo || null,
         addresses: [
           {
             type: "billing",
@@ -234,6 +236,7 @@ export default {
       city: initialCity,
       postalCode: initialZip,
       phone: initialPhone,
+      additionalInformation: addInfo,
       country: "pl",
       checkoutModel,
       selectedPaymentProvider: null,
@@ -424,7 +427,8 @@ export default {
     },
     selectParcelBox(event) {
       this.parcelBoxSelected = true
-      this.checkoutModel.customer.addresses[0].city = event.details.name
+      alert(event.details.name)
+      this.checkoutModel.customer.additionalInformation = event.details.name
     },
   },
   mounted() {
