@@ -105,7 +105,7 @@
         </div>
         <div class="payment__row">
           <div class="payment__input-group">
-            <button class="delivery__button"
+            <button class="delivery__button"                 v-model="value"
  :disabled="selected.first" @click="handleClick(1)">Paczkomat <br/> 13,99 zł</button>
           </div>
           <div class="payment__input-group">
@@ -245,9 +245,7 @@ export default {
       city: initialCity,
       postalCode: initialZip,
       phone: initialPhone,
-      key: 'PACZKOMAT:',
       value: addInfo,
-      meta,
       country: "pl",
       checkoutModel,
       selectedPaymentProvider: null,
@@ -313,7 +311,7 @@ export default {
     firstName(newValue) {
       this.checkoutModel.customer.firstName = newValue;
     },
-    meta() {
+    value() {
       this.checkoutModel.meta[0].value = this.parcel;
     },
     /**
@@ -442,7 +440,7 @@ export default {
     selectParcelBox(event) {
       this.parcelBoxSelected = true
       this.parcel = event.details.name
-      console.log(event.details.name +'     '+ this.parcel)
+      console.log(event.details.name +  "  " + this.parcel)
 
     },
   },
