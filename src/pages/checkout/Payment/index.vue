@@ -103,8 +103,9 @@
             />
           </div>
         </div>
-        <inpost-geowidget :onpoint="onPoint" token="<%= process.env.INPOST_TOKEN %>" language='pl' config='parcelCollect247'></inpost-geowidget>
-
+        <div class="map__div">
+          <inpost-geowidget onpoint="afterPointSelected" token='<%= INPOST_TOKEN%>' language='pl'  config='parcelCollect'></inpost-geowidget>
+        </div>
       </div>
     </Section>
     <Section :title="$t('checkout.choosePaymentMethod')">

@@ -10,6 +10,12 @@
   flex-grow: 1;
 }
 
+.map__div {
+  position: relative;
+  height: 500px;
+
+}
+
 /*
  * We target the second input group of the same row
  */

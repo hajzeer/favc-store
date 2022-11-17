@@ -1,14 +1,20 @@
+.checkout-page {
+    overflow: hidden;
+}
 .checkout-page__inner {
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 1rem;
     padding-top: 130px;
+
 }
 
 @media (min-width: 1024px) {
     .checkout-page__inner {
         padding-top: 200px;
-        width: 70%;
+        width: 90%;
+        position: relative;
+        left: 150px;
     }
 }
 
