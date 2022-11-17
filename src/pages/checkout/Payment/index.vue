@@ -421,14 +421,14 @@ export default {
              */
             this.isItemBeingAddedToCart = false;
           });
-    }
+    },
+    selectParcelBox(event) {
+      this.parcelBoxSelected = true
+      this.checkoutModel.customer.addresses[0].city = event.details.name
+    },
   },
   mounted() {
-    document.addEventListener('handleOnPoint', (event) => {
-      this.parcelBoxSelected = true
-      alert(event.details.name)
-
-    });
+    document.addEventListener('handleOnPoint', (event) => this.selectParcelBox(event));
 
   }
 };
