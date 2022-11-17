@@ -201,7 +201,11 @@ export default {
 
     const checkoutModel = {
       basketModel: this.$store.state.basket.clientBasket,
-      additionalInformation: addInfo || null,
+      meta: {
+        key: 'PACZKOMAT',
+        value: addInfo || null
+
+      },
       customer: {
         firstName: initialFirstName || null,
         lastName: initialLastName || null,
@@ -241,7 +245,9 @@ export default {
       city: initialCity,
       postalCode: initialZip,
       phone: initialPhone,
-      additionalInformation: addInfo,
+      key: 'PACZKOMAT:',
+      value: addInfo,
+      meta,
       country: "pl",
       checkoutModel,
       selectedPaymentProvider: null,
@@ -436,6 +442,8 @@ export default {
     selectParcelBox(event) {
       this.parcelBoxSelected = true
       this.parcel = event.details.name
+      console.log(event.details.name +'     '+ this.parcel)
+
     },
   },
   mounted() {
