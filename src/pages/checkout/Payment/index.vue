@@ -436,15 +436,14 @@ export default {
           });
     },
     selectParcelBox(event) {
-      console.log(event)
       this.parcelBoxSelected = true
-      this.parcel = event
-      console.log(this.parcel)
+      this.parcel = event.details.name
+      console.log(event.details.name +  "  " + this.parcel)
 
     },
   },
   mounted() {
-    document.addEventListener('handleOnPoint', event => this.selectParcelBox(event.details.name));
+    this.$el.addEventListener('handleOnPoint', event => this.selectParcelBox(event));
   }
 };
 </script>
