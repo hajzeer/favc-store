@@ -58,12 +58,11 @@ export default {
               line1: `${this.checkoutModel.customer.addresses[0].street}`,
               postal_code: `${this.checkoutModel.customer.addresses[0].postalCode}`,
             },
-
           },
+          metadata: {
+            PACZKOMAT: `${this.checkoutModel.customer.meta[0].value}`
+          }
         },
-        metadata: {
-          'PACZKOMAT': `${this.checkoutModel.customer.meta[0].value}`
-        }
       },
     };
   },
