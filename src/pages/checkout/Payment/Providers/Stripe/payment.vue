@@ -60,7 +60,7 @@ export default {
             },
           },
           metadata: {
-            PACZKOMAT: `${this.checkoutModel.meta[0].value}`
+            "PACZKOMAT": `${this.checkoutModel.meta[0].value}`
           }
         },
       },
