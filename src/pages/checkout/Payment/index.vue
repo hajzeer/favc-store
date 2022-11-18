@@ -312,9 +312,6 @@ export default {
     firstName(newValue) {
       this.checkoutModel.customer.firstName = newValue;
     },
-    value() {
-      this.checkoutModel.meta[0].value = this.parcel;
-    },
     /**
      * When the model of lastName changes
      */
@@ -439,14 +436,15 @@ export default {
           });
     },
     selectParcelBox(event) {
+      console.log(event)
       this.parcelBoxSelected = true
-      this.parcel = event.details.name
-      console.log(event.details.name +  "  " + this.parcel)
+      this.parcel = event
+      console.log(this.parcel)
 
     },
   },
   mounted() {
-    this.$el.addEventListener('handleOnPoint', event => this.selectParcelBox(event));
+    document.addEventListener('handleOnPoint', event => this.selectParcelBox(event.details.name));
   }
 };
 </script>
