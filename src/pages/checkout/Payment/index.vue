@@ -437,8 +437,8 @@ export default {
     },
     selectParcelBox(event) {
       this.parcelBoxSelected = true
-      this.parcel = event.details.name
-      console.log(event.details.name +  "  " + this.parcel)
+      this.parcel = event.name
+      console.log(event.name +  "  " + this.parcel)
 
     },
   },
