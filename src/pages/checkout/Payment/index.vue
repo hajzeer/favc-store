@@ -438,13 +438,14 @@ export default {
     },
     handleOnPoint(event) {
       this.parcelBoxSelected = true
-      this.parcel = event
-      console.log(event)
+      this.parcel = event.detail.name
+      this.checkoutModel.meta[0].value = this.parcel
+      console.log(event.detail.name + "|" + this.parcel  + "|" + this.checkoutModel.meta[0].value)
 
     },
   },
   mounted() {
-    this.$el.addEventListener('handleOnPoint', point => this.handleOnPoint(event));
+    this.$el.addEventListener('handleOnPoint', event => this.handleOnPoint(event));
   }
 };
 </script>
