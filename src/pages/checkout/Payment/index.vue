@@ -118,6 +118,7 @@
           <p v-if="parcelBoxSelected">
             TWÓJ PACZKOMAT: {{parcel}}
           </p>
+          <p v-else></p>
         </div>
       </div>
 
@@ -435,15 +436,15 @@ export default {
             this.isItemBeingAddedToCart = false;
           });
     },
-    selectParcelBox(event) {
+    handleOnPoint(point) {
       this.parcelBoxSelected = true
-      this.parcel = event.name
-      console.log(event.name +  "  " + this.parcel)
+      this.parcel = point.name
+      console.log(point.name +  "  " + this.parcel)
 
     },
   },
   mounted() {
-    this.$el.addEventListener('handleOnPoint', event => this.selectParcelBox(event));
+    this.$el.addEventListener('handleOnPoint', point => this.handleOnPoint(point));
   }
 };
 </script>
