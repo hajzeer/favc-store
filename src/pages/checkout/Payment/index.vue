@@ -202,12 +202,10 @@ export default {
 
     const checkoutModel = {
       basketModel: this.$store.state.basket.clientBasket,
-      meta: [
-          {
+      meta: {
         key: 'PACZKOMAT',
         value: addInfo || null
         },
-      ],
       customer: {
         firstName: initialFirstName || null,
         lastName: initialLastName || null,
@@ -439,8 +437,8 @@ export default {
     handleOnPoint(event) {
       this.parcelBoxSelected = true
       this.parcel = event.detail.name
-      this.checkoutModel.meta[0].value = this.parcel
-      console.log(event.detail.name + "|" + this.parcel  + "|" + this.checkoutModel.meta[0].value)
+      this.checkoutModel.meta.value = this.parcel
+      console.log(event.detail.name + "|" + this.parcel  + "|" + this.checkoutModel.meta.value)
 
     },
   },
