@@ -57,9 +57,13 @@ export default {
               country: `${this.checkoutModel.customer.addresses[0].country}`,
               line1: `${this.checkoutModel.customer.addresses[0].street}`,
               postal_code: `${this.checkoutModel.customer.addresses[0].postalCode}`,
-            }
-          }
+            },
+
+          },
         },
+        metadata: {
+          PACZKOMAT: `${this.checkoutModel.customer.meta[0].value}`
+        }
       },
     };
   },
