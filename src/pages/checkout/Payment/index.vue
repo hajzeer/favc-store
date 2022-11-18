@@ -436,15 +436,15 @@ export default {
             this.isItemBeingAddedToCart = false;
           });
     },
-    handleOnPoint(point) {
+    handleOnPoint(event) {
       this.parcelBoxSelected = true
-      this.parcel = point.name
-      console.log(point.name +  "  " + this.parcel)
+      this.parcel = event
+      console.log(event)
 
     },
   },
   mounted() {
-    this.$el.addEventListener('handleOnPoint', point => this.handleOnPoint(point));
+    this.$el.addEventListener('handleOnPoint', point => this.handleOnPoint(event));
   }
 };
 </script>
