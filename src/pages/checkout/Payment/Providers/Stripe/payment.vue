@@ -59,9 +59,6 @@ export default {
               postal_code: `${this.checkoutModel.customer.addresses[0].postalCode}`,
             },
           },
-          metadata: {
-            "PACZKOMAT": `${this.checkoutModel.meta[0].value}`
-          }
         },
       },
     };
@@ -155,6 +152,8 @@ export default {
 
         if (success) {
           this.orderId = orderId
+          console.log(this.checkoutModel)
+
           await this.$store.dispatch('orderId/setId', this.orderId)
           await this.$store.dispatch('basket/empty', [])
           await this.$router.push(`/confirmation/${orderId}`)

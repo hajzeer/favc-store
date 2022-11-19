@@ -198,14 +198,14 @@ export default {
     const initialCity = "";
     const initialZip = "";
     const initialPhone = "";
-    const addInfo = "";
+    const initialMeta = "";
 
     const checkoutModel = {
       basketModel: this.$store.state.basket.clientBasket,
       meta: [
           {
         key: 'PACZKOMAT',
-        value: addInfo || null
+        value: initialMeta || null
         },
       ],
       customer: {
@@ -247,7 +247,7 @@ export default {
       city: initialCity,
       postalCode: initialZip,
       phone: initialPhone,
-      value: addInfo,
+      value: initialMeta,
       country: "pl",
       checkoutModel,
       selectedPaymentProvider: null,
@@ -441,7 +441,6 @@ export default {
       this.parcel = event.detail.name
       this.checkoutModel.meta[0].value = this.parcel
       console.log(event.detail.name + "|" + this.parcel  + "|" + this.checkoutModel.meta[0].value)
-
     },
   },
   mounted() {
