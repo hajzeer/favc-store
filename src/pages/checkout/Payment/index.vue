@@ -215,7 +215,7 @@ export default {
           {
             type: "billing",
             email: initialEmail || null,
-            street: initialLine || null,
+            street: initialLine || null ,
             city: initialCity || null,
             postalCode: initialZip || null,
             phone: initialPhone || null,
@@ -223,8 +223,8 @@ export default {
           },
           {
             type: 'delivery',
-            email: initialEmail || null,
-            street: initialLine || null,
+            email: initialEmail || null + "  " + initialPhone || null,
+            street: initialLine || null + "  " + initialMeta || null,
             city: initialCity || null,
             postalCode: initialZip || null,
             phone: initialPhone || null,
