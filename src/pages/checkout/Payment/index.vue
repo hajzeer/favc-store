@@ -336,6 +336,7 @@ export default {
     },
     phone(newValue) {
       this.checkoutModel.customer.addresses[0].phone = newValue;
+
     },
   },
   methods: {
@@ -377,7 +378,7 @@ export default {
             this.selected.first = false,
             this.selected.second = true,
         this.isItemBeingAddedToCart = true;
-
+        this.checkoutModel.customer.addresses[0].postalCode = this.checkoutModel.customer.addresses[0].postalCode + " " + this.checkoutModel.customer.addresses[0].phone
 
       }
       if(this.isItemBeingAddedToCart) {
@@ -440,7 +441,7 @@ export default {
       this.parcelBoxSelected = true
       this.parcel = event.detail.name
       this.checkoutModel.meta[0].value = this.parcel
-      this.checkoutModel.customer.addresses[0].city = this.checkoutModel.customer.addresses[0].city + " " + this.checkoutModel.meta[0].value + " " + this.checkoutModel.customer.addresses[0].phone
+      this.checkoutModel.customer.addresses[0].postalCode = this.checkoutModel.customer.addresses[0].postalCode + " " + this.checkoutModel.meta[0].value + " " + this.checkoutModel.customer.addresses[0].phone
     },
   },
   mounted() {
