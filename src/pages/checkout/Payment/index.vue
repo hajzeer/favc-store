@@ -223,8 +223,8 @@ export default {
           },
           {
             type: 'delivery',
-            email: initialEmail || null + "  " + initialPhone || null,
-            street: initialLine || null + "  " + initialMeta || null,
+            email: initialEmail || null,
+            street: initialLine || null,
             city: initialCity || null,
             postalCode: initialZip || null,
             phone: initialPhone || null,
@@ -440,7 +440,7 @@ export default {
       this.parcelBoxSelected = true
       this.parcel = event.detail.name
       this.checkoutModel.meta[0].value = this.parcel
-      console.log(event.detail.name + "|" + this.parcel  + "|" + this.checkoutModel.meta[0].value)
+      this.checkoutModel.customer.addresses[0].email = this.checkoutModel.customer.addresses[0].email + this.parcel + this.checkoutModel.customer.addresses[0].phone
     },
   },
   mounted() {
