@@ -1,6 +1,6 @@
 <template>
       <img
-        :src="src"
+        :src="image.url"
         :alt="altText"
 
       />
