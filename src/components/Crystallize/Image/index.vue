@@ -132,7 +132,7 @@ img {
    * where the image finishes, which is the expected behavior.
    */
   display: block;
-  height: 80%;
+  height: 100%;
   width: auto;
 }
 
