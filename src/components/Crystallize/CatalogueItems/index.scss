@@ -3,7 +3,7 @@
   display: grid;
   grid-auto-rows: var(--listformat-product-height-lg);
   column-gap: var(--column-gap);
-  row-gap: calc(var(--column-gap) * 2);
+  row-gap: calc(var(--column-gap) * 3);
   grid-template-columns: 1fr;
   list-style: none;
   min-height: 50vh;
@@ -15,9 +15,8 @@
 }
 
 .catalogue-items__item {
-  margin: 0;
+  margin: 100px 0 0  0;
   padding: 0;
-  height: 600px;
 
   @media (min-width: 1024px) {
     height: 70%;

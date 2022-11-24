@@ -39,6 +39,12 @@
 .price__details {
   display: flex;
   align-items: center;
+
+  @media (max-width: 1024px) {
+    margin: 0 10px;
+
+  }
+
 }
 
 /*
