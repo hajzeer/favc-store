@@ -45,11 +45,13 @@
   font-weight: 400;
   font-family: montserrat, sans-serif;
   text-transform: uppercase;
+
+@media (min-width: 1024px) {
   max-width: 250px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-
+}
 }
 
 .list-format-product__media {
