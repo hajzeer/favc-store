@@ -16,6 +16,10 @@
   animation: drawAttentionToItem 400ms 1;
 }
 
+.tiny-basket-item__media {
+  max-height: 150px;
+}
+
 .tiny-basket-item:hover .tiny-basket-item__quantity-modifier.tiny-basket-item__quantity-modifier--remove {
   display: block;
 }
