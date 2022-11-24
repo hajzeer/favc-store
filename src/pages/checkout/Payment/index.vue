@@ -120,6 +120,7 @@
           </p>
           <p v-else></p>
         </div>
+        <div v-else></div>
       </div>
 
     </Section>
@@ -365,77 +366,92 @@ export default {
         this.unselectedVariant.path = '/delivery/delivery-cost'
         this.selected.first = true,
             this.selected.second = false,
-        this. parcelBoxSelected = false,
-
-            this.isItemBeingAddedToCart = true;
+        this. parcelBoxSelected = false
 
       } else if (this.parcelBox === 2) {
         this.selectedVariant.sku = 'pod-dom-1241345341462345'
         this.selectedVariant.path = '/delivery/delivery-cost'
         this.unselectedVariant.sku = 'paczkomat-1211243515123451345'
         this.unselectedVariant.path = '/delivery/delivery-cost'
-        this. parcelBoxSelected = true,
+        this.parcelBoxSelected = true,
             this.selected.first = false,
             this.selected.second = true,
-        this.isItemBeingAddedToCart = true;
-        this.checkoutModel.customer.addresses[0].postalCode = this.checkoutModel.customer.addresses[0].postalCode + " " + this.checkoutModel.customer.addresses[0].phone
-
+            this.checkoutModel.customer.addresses[0].postalCode = this.checkoutModel.customer.addresses[0].postalCode + " " + this.checkoutModel.customer.addresses[0].phone
       }
-      if(this.isItemBeingAddedToCart) {
-        this.addToBasket()
-      }
+        const basket = this.$store.state.basket.serverBasket?.cart
 
+        for (let i = 0; i < basket.length; i++) {
+          if(basket[i].sku === 'pod-dom-1241345341462345') {
+            this.$store
+                .dispatch("basket/removeItem", {
+                  sku: 'pod-dom-1241345341462345',
+                  path: '/delivery/delivery-cost',
+                })
+            this.isItemBeingAddedToCart = true
+          }
+          if (basket[i].sku === 'paczkomat-1211243515123451345') {
+            this.$store
+                .dispatch("basket/removeItem", {
+                  sku: 'paczkomat-1211243515123451345',
+                  path: '/delivery/delivery-cost',
+                })
+            this.isItemBeingAddedToCart = true
+          }
+          if (i + 1 === basket.length){
+            this.isItemBeingAddedToCart = true
+          }
+          console.log(this.isItemBeingAddedToCart, i)
+
+        }
+        if(this.isItemBeingAddedToCart === true) {
+          this.addToBasket()
+        }
     },
     addToBasket() {
-      if (this.addedItem) {
-        this.$store.dispatch("basket/removeItem", {
-          sku: this.unselectedVariant.sku,
-          path: this.unselectedVariant.path,
+
+        const { locales, locale: code } = this.$i18n;
+        const locale = locales.find((l) => l.locale === code) || locales[0];
+
+        const { getRelativePriceVariants } = require("../../../../lib/pricing");
+        const variantPricing = getRelativePriceVariants({
+          variant: this.selectedVariant,
+          locale,
         });
-      }
+        const variantDiscountPrice = variantPricing?.discountPrice;
+        const variantDefaultPrice = variantPricing?.defaultPrice;
 
-      const { locales, locale: code } = this.$i18n;
-      const locale = locales.find((l) => l.locale === code) || locales[0];
-
-      const { getRelativePriceVariants } = require("../../../../lib/pricing");
-      const variantPricing = getRelativePriceVariants({
-        variant: this.selectedVariant,
-        locale,
-      });
-      const variantDiscountPrice = variantPricing?.discountPrice;
-      const variantDefaultPrice = variantPricing?.defaultPrice;
-
-      this.$store
-          .dispatch("basket/addItem", {
-            sku: this.selectedVariant.sku,
-            path: this.selectedVariant.path,
-            priceVariantIdentifier: variantDiscountPrice
-                ? variantDiscountPrice.identifier
-                : variantDefaultPrice.identifier || locale.crystallizePriceVariant,
-          })
-          .then(() => {
-            const TIME_TO_SHOW_SPINNER = 250;
-            const TIME_TO_ADD_ITEM_TO_CART = 250;
-            /**
-             * We add a delay so the spinner can be visualize for a small period of time.
-             */
-            setTimeout(() => {
-              this.isItemBeingAddedToCart = false;
-              this.addedItem = true;
+        this.$store
+            .dispatch("basket/addItem", {
+              sku: this.selectedVariant.sku,
+              path: this.selectedVariant.path,
+              priceVariantIdentifier: variantDiscountPrice
+                  ? variantDiscountPrice.identifier
+                  : variantDefaultPrice.identifier || locale.crystallizePriceVariant,
+            })
+            .then(() => {
+              const TIME_TO_SHOW_SPINNER = 250;
+              const TIME_TO_ADD_ITEM_TO_CART = 250;
+              /**
+               * We add a delay so the spinner can be visualize for a small period of time.
+               */
               setTimeout(() => {
-                this.$store.dispatch("basket/drawAttentionToItem", {
-                  sku: this.selectedVariant.sku,
-                  visible: false
-                });
-              }, TIME_TO_ADD_ITEM_TO_CART);
-            }, TIME_TO_SHOW_SPINNER);
-          })
-          .catch(() => {
-            /**
-             * If it failed, we make the spinner disappear too.
-             */
-            this.isItemBeingAddedToCart = false;
-          });
+                this.isItemBeingAddedToCart = false;
+                this.addedItem = true;
+                setTimeout(() => {
+                  this.$store.dispatch("basket/drawAttentionToItem", {
+                    sku: this.selectedVariant.sku,
+                    visible: false
+                  });
+                }, TIME_TO_ADD_ITEM_TO_CART);
+              }, TIME_TO_SHOW_SPINNER);
+              this.isItemBeingAddedToCart = false;
+            })
+            .catch(() => {
+              /**
+               * If it failed, we make the spinner disappear too.
+               */
+              console.log("err")
+            });
     },
     handleOnPoint(event) {
       this.parcelBoxSelected = true
