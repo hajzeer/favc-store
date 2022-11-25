@@ -50,11 +50,8 @@ export default {
   },
   methods: {
     async confirmPayment() {
-      const key = process.env.PUBLISHABLE_KEY
-
-
       if(this.id.clientSecret) {
-        const stripe = await loadStripe(`${key}`);
+        const stripe = await loadStripe(process.env.PUBLISHABLE_KEY);
         const { error, paymentIntent } = await stripe.retrievePaymentIntent(
             this.id.clientSecret
         );

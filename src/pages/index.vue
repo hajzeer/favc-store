@@ -87,6 +87,7 @@ export default {
 
   },
   mounted() {
+
     this.$el.addEventListener('touchstart', event => this.touchstart(event));
     this.$el.addEventListener('touchmove', event => this.touchmove(event));
     this.$el.addEventListener('touchend', () => this.touchend());

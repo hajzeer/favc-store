@@ -75,7 +75,8 @@ export default {
     SERVICE_API_URL: process.env.SERVICE_API_URL,
     // Used to generate the hreflang attributes for SEO purposes
     SITE_URL: process.env.SITE_URL,
-    INPOST_TOKEN: process.env.INPOST_TOKEN
+    INPOST_TOKEN: process.env.INPOST_TOKEN,
+    PUBLISHABLE_KEY: process.env.PUBLISHABLE_KEY,
   },
   srcDir: "src/",
   components: true, // NuxtJS will import automatically yor components
