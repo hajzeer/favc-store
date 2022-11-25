@@ -7,7 +7,6 @@
         :elements-options="elementsOptions"
         :confirm-params="confirmParams"
         v-if="!isLoading"
-        :ref="redirect"
 
       />
       <Button @click="handleSubmit" :disabled="isDisabled" alignment="center" type="button" class="submit__button">
@@ -36,7 +35,6 @@ export default {
       orderId: '',
       stripePaymentIntent: null,
       status: "idle",
-      redirect: "if_required",
       isLoading: true,
       publishableKey: null,
       elementsOptions: {
@@ -167,7 +165,6 @@ export default {
     },
     handleSubmit() {
       this.status = "confirming";
-      this.go();
       this.$refs.stripeCardRef.submit();
 
     },
