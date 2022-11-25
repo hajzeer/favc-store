@@ -8,7 +8,8 @@
         <ul>
           <li class="address__list">{{innerOrder.customer.addresses[0].email}}</li>
           <li class="address__list">{{innerOrder.customer.addresses[0].street}}</li>
-          <li class="address__list">{{innerOrder.customer.addresses[0].postalCode}}, {{innerOrder.customer.addresses[0].city}}</li>
+          <li class="address__list">{{innerOrder.customer.addresses[0].city}}</li>
+          <li class="address__list">{{innerOrder.customer.addresses[0].postalCode}}</li>
         </ul>
 
 
