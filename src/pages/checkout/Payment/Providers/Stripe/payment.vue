@@ -7,7 +7,6 @@
         :elements-options="elementsOptions"
         :confirm-params="confirmParams"
         v-if="!isLoading"
-        :redirect="redirect"
 
       />
       <Button @click="handleSubmit" :disabled="isDisabled" alignment="center" type="button" class="submit__button">
@@ -112,10 +111,11 @@ export default {
 
     },
     async go() {
-      const stripe = await loadStripe(`${this.publishableKey}`);
+      const stripe = await loadStripe(process.env.PUBLISHABLE_KEY);
       const { error, paymentIntent } = await stripe.retrievePaymentIntent(
           this.elementsOptions.clientSecret
       );
+      console.log(this.status)
       if (error) {
         this.status = error
       } else {
@@ -149,7 +149,6 @@ export default {
           success,
           orderId
         } = response.data.paymentProviders.stripe.confirmOrder;
-
         if (success) {
           this.orderId = orderId
           console.log(this.checkoutModel)
