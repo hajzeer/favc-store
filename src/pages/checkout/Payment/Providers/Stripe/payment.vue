@@ -7,6 +7,7 @@
         :elements-options="elementsOptions"
         :confirm-params="confirmParams"
         v-if="!isLoading"
+        :ref="redirect"
 
       />
       <Button @click="handleSubmit" :disabled="isDisabled" alignment="center" type="button" class="submit__button">
