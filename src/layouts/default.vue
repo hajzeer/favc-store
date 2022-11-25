@@ -179,18 +179,25 @@ export default {
   position: absolute;
   right: 20px;
   bottom: 80px;
+  z-index: 9999999;
 
   img {
     width: 30px;
     height: auto;
     margin-bottom: 10px;
+    z-index: 9999999;
+
   }
 
   a {
+    z-index: 9999999;
+
     img {
       width: 50px;
       height: 50px;
       margin: 0;
+      z-index: 9999999;
+
     }
   }
 
