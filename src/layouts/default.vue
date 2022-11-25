@@ -32,7 +32,7 @@
               <LayoutFooter/>
               <div class="social__media__div">
                 <img src="/Group%2098.png"/>
-                <a href="https://www.instagram.com/ciotkasandra/">
+                <a href="https://instagram.com/yfavc_store?igshid=YmMyMTA2M2Y=">
                   <img src="/ig.png"/>
                 </a>
                 <a href="https://www.youtube.com/channel/UCHZ3EV3Si5y_DYjVvXDuV_w">
