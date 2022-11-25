@@ -19,8 +19,9 @@
             <img class="front2" :src="stack.components[0].content.images[0].url"/>
             <h1 class="page__title">{{stack.name}}</h1>
           </NuxtLink>
-          <p class="info__paragraph">Przesuń aby zobaczyć więcej</p>
         </div>
+        <p class="info__paragraph">Przesuń aby zobaczyć więcej</p>
+
       </div>
 
     <div class="carousel">
@@ -57,11 +58,11 @@ export default {
   },
   computed: {
     changePosition() {
-        return {transform: 'translateX(-'+ this.currentIndex * 100+'%)'};
+        return {transform: 'translateX(-'+ this.currentIndex * 100 +'%)'};
       },
     lengthList() {
       if(this.stackableContent === null) {
-        return {width: 2 * 100 + "%"}
+        return {width:  100 + "%"}
       } else {
         return {width: this.stackableContent.length * 100 + "%"}
       }

@@ -134,6 +134,11 @@ img {
   display: block;
   height: 100%;
   width: auto;
+
+  @media(min-width: 1024px) {
+    height: auto;
+    width: auto;
+  }
 }
 
 </style>

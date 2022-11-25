@@ -15,7 +15,7 @@
   width: 100%;
   height: 150px;
   left: 15%;
-  bottom: -80px !important;
+  bottom: 0 !important;
   font-family: Elevon;
 
   @media (min-width: 1024px) {
@@ -57,13 +57,21 @@
   width: 100%;
   transition: all .3s ease-out;
 
-  .front2 {
-    width: 100%;
+  a {
+    width: 100vw;
     height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .front2 {
+    width: auto;
+    height: 100%;
     z-index: -1;
     max-width: none;
-
-
+    overflow: hidden;
   }
 
   @media (min-width: 1024px) {
