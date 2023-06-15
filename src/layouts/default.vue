@@ -8,18 +8,18 @@
       <AuthenticationProvider>
         <BasketProvider>
           <LayoutWithAsideView>
-            <template v-slot:view-to-toggle>
+            <template v-slot:view-to-toggle v-if="isStoreActive">
               <TinyBasket v-slot:view-to-toggle />
             </template>
             <template>
-              <PreviewBar v-if="isPreviewMode" />
+              <PreviewBar v-if="isPreviewMode"/>
               <LayoutHeader>
                 <template v-slot:actions>
                   <div class="layout__actions">
-                    <BasketButton />
+                    <BasketButton v-if="isStoreActive"/>
                   </div>
                 </template>
-                <template v-slot:navigation>
+                <template v-slot:navigation v-if="isStoreActive">
                   <div class="blured__div"/>
 
                   <div class="">
@@ -28,7 +28,12 @@
                   </div>
                 </template>
               </LayoutHeader>
-              <nuxt />
+              <nuxt v-if="isStoreActive"/>
+              <div v-if="!isStoreActive" class="turn__off__store__style">
+                <h1>
+                  Sklep chwilowo nieczynny, <br/> przepraszamy za niedogodności
+                </h1>
+              </div>
               <LayoutFooter/>
               <div class="social__media__div">
                 <img src="/Group%2098.png"/>
@@ -60,6 +65,8 @@ export default {
       isPreviewMode: this.$route.query.preview,
       navItems: [],
       isActive: false,
+      isStoreActive: true,
+      fetchedValue: null,
     };
   },
   computed: {
@@ -132,13 +139,29 @@ export default {
         language: locale.crystallizeCatalogueLanguage,
       },
     });
-
+      const fetchedData = await simplyFetchFromGraph({
+      query: `
+  query TURN_OFF_STORE{
+    catalogue(language:"pl" path:"/frontpage-2021") {
+      component(id: "turn-onoff") {
+        content {
+          ...on BooleanContent {
+            value
+          }
+        }
+      }
+      }
+  }
+`,
+    })
     /**
      * Filter the items you don't want in the nav bar
      */
     this.navItems = data.catalogue.children.filter(
       (c) => !c.name.startsWith("_")
     );
+    this.fetchedValue = fetchedData.data.catalogue.component.content.value
+    this.isStoreActive = !this.fetchedValue
   },
 };
 </script>
@@ -201,5 +224,17 @@ export default {
     }
   }
 
+}
+.turn__off__store__style {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  h1 {
+    color: #ffffff;
+  }
 }
 </style>
